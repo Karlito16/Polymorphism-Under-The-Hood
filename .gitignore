@@ -1,0 +1,9 @@
+**/cmake-build-debug
+**/main
+**/main.s
+
+**/bin
+
+**/__pycache__
+
+**/.idea
