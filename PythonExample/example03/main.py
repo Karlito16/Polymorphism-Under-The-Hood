@@ -10,8 +10,9 @@ class ValueWrapper:
 
 
 def execute_object_method_rec(clazz, self, method_name):
-    if clazz.__dict__.get(method_name):
-        ValueWrapper.value = clazz.__dict__.get(method_name)(self)
+    function_obj = clazz.__dict__.get(method_name)
+    if function_obj:
+        ValueWrapper.value = function_obj(self)
         return True
 
     bases = clazz.__bases__
@@ -24,8 +25,13 @@ def execute_object_method_rec(clazz, self, method_name):
 
 
 def execute_object_method(obj, method_name):
+    function_obj = obj.__dict__.get(method_name)
+    if function_obj:
+        return function_obj(obj)
+
     if execute_object_method_rec(clazz=obj.__class__, self=obj, method_name=method_name):
         return ValueWrapper.value
+
     raise AttributeError(f"'{obj.__class__.__name__}' object has no attribute '{method_name}'")
 
 
@@ -43,7 +49,11 @@ def main():
 
     animals_print_greeting(cat, dog)
 
-    execute_object_method(obj=cat, method_name="nope")
+    # execute_object_method(obj=cat, method_name="nope")
+
+    # cat.__dict__.setdefault("jump", lambda obj: print(f"{execute_object_method(obj=obj, method_name='get_name')} jumps!"))
+    # cat.jump = lambda obj: print(f"{execute_object_method(obj=obj, method_name='get_name')} jumps!")
+    # execute_object_method(obj=cat, method_name="jump")
 
 
 main()
