@@ -44,16 +44,12 @@ def animals_print_greeting(*animals: Animal):
 
 
 def main():
-    cat: Cat = Cat(name="Mica Maca")
-    dog: Dog = Dog(name="Peso")
+    cat: Animal = Cat(name="Mica Maca")
+    dog: Animal = Dog(name="Peso")
 
     animals_print_greeting(cat, dog)
 
-    # execute_object_method(obj=cat, method_name="nope")
-
-    # cat.__dict__.setdefault("jump", lambda obj: print(f"{execute_object_method(obj=obj, method_name='get_name')} jumps!"))
-    # cat.jump = lambda obj: print(f"{execute_object_method(obj=obj, method_name='get_name')} jumps!")
-    # execute_object_method(obj=cat, method_name="jump")
+    execute_object_method(obj=cat, method_name="nope")
 
 
 main()

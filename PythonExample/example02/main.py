@@ -9,8 +9,8 @@ def animals_print_greeting(*animals: Animal):
 
 
 def main():
-    cat: Cat = Cat(name="Mica Maca")
-    dog: Dog = Dog(name="Peso")
+    cat: Animal = Cat(name="Mica Maca")
+    dog: Animal = Dog(name="Peso")
 
     animals_print_greeting(cat, dog)
 
